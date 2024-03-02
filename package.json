@@ -17,32 +17,38 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
-    "@emotion/css": "^11.1.3",
+    "@emotion/css": "^11.11.2",
     "@zoralabs/nft-hooks": "1.2.0",
-    "deepmerge": "^4.2.2",
-    "merge-anything": "^4.0.1",
-    "tslib": "^2.2.0"
+    "deepmerge": "^4.3.1",
+    "merge-anything": "^4.0.5",
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.2",
-    "@storybook/addon-a11y": "^6.4.18",
-    "@storybook/addon-actions": "^6.4.18",
-    "@storybook/addon-essentials": "^6.4.18",
-    "@storybook/addon-links": "^6.4.18",
-    "@storybook/react": "^6.4.18",
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@storybook/addon-a11y": "^7.6.17",
+    "@storybook/addon-actions": "^7.6.17",
+    "@storybook/addon-essentials": "^7.6.17",
+    "@storybook/addon-links": "^7.6.17",
+    "@storybook/react": "^7.6.17",
+    "@storybook/react-webpack5": "^7.6.17",
     "@testing-library/react": "^11.2.7",
-    "@types/jest": "^26.0.23",
-    "babel-loader": "^8.2.2",
+    "@types/jest": "^26.0.24",
+    "@types/react": "^17.0.76",
+    "babel-loader": "^8.3.0",
     "fetch-mock-jest": "^1.5.1",
-    "gh-pages": "^3.1.0",
+    "gh-pages": "^3.2.3",
     "husky": "^6.0.0",
-    "jest": "^27.0.4",
+    "jest": "^27.5.1",
     "mockdate": "^3.0.5",
-    "prettier": "^2.3.0",
+    "prettier": "^2.8.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "ts-jest": "^27.0.3",
-    "typescript": "^4.2.4"
+    "storybook": "^7.6.17",
+    "ts-jest": "^27.1.5",
+    "typescript": "^4.9.5"
   },
   "lint-staged": {
     "*.{ts,md}": "prettier src --write"
@@ -53,14 +59,15 @@
     }
   },
   "scripts": {
-    "prepack": "yarn clean && tsc",
+    "prepack": "pnpm clean && tsc",
     "publish-prelease": "npm publish --access public --tag=pre-release",
-    "build": "yarn run prepack",
+    "build": "pnpm run prepack",
     "test": "TZ='EST' jest",
     "clean": "rm -rf ./dist",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "predeploy": "npm run build-storybook",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "predeploy": "pnpm build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static"
-  }
+  },
+  "packageManager": "pnpm@8.15.4+sha256.cea6d0bdf2de3a0549582da3983c70c92ffc577ff4410cbf190817ddc35137c2"
 }

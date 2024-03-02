@@ -1,7 +1,7 @@
 env_defaults: &env_defaults
-  working_directory: ~
+  working_directory: ~/
   docker:
-    - image: circleci/node:14.15.1
+    - image: circleci/node:18.19.1
 
 version: 2.1
 jobs:
@@ -13,21 +13,21 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1.0-dependencies-{{ checksum "yarn.lock" }}
+            - v1.0-dependencies-{{ checksum "pnpm-lock.yaml" }}
             # fallback to using the latest cache if no exact match is found
             - v1.0-dependencies-
 
       - node/install-packages:
-          pkg-manager: yarn
+          pkg-manager: pnpm
 
-      - run: yarn install
+      - run: pnpm install
 
-      - run: yarn add jest-junit -W
+      - run: pnpm add jest-junit -W
 
       - save_cache:
           paths:
             - node_modules
-          key: v1.0-dependencies-{{ checksum "yarn.lock" }}
+          key: v1.0-dependencies-{{ checksum "pnpm-lock.yaml" }}
 
       - persist_to_workspace:
           root: .
@@ -41,7 +41,7 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          command: yarn run test --ci 
+          command: pnpm test --ci 
           name: Run Tests
   build:
     <<: *env_defaults
@@ -50,7 +50,7 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          command: yarn run build
+          command: pnpm build
           name: Build Typescript Package
 
 orbs:

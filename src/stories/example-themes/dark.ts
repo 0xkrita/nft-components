@@ -1,8 +1,15 @@
 import { css } from "@emotion/css";
-import { AuctionStateInfo } from "@zoralabs/nft-hooks";
+// import { AuctionStateInfo } from "@zoralabs/nft-hooks";
 
 import { Style } from "../../constants/style";
 import { ThemeOptionsType } from "../../constants/theme";
+
+enum AuctionStateInfo {
+  RESERVE_AUCTION_ACTIVE,
+  RESERVE_AUCTION_LAST_15,
+  PERPETUAL_ASK,
+  RESERVE_AUCTION_PENDING
+}
 
 export const DarkTheme = {
   theme: {
